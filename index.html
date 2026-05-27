@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهوية الموحدة | TXLIR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-red: #ff003c;
+            --brand-blue: #003cff;
+            --bg-color: #0d0d12;
+            --glass-bg: rgba(20, 20, 30, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-light: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(255, 0, 60, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(0, 60, 255, 0.15) 0%, transparent 50%);
+            color: #fff;
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--brand-red), var(--brand-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        p.subtitle {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            max-width: 750px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1300px;
+            margin: 2rem auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .hero-image-container {
+            flex: 1;
+            min-width: 350px;
+            position: relative;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid var(--brand-blue);
+            border-radius: 28px;
+            z-index: -1;
+            opacity: 0.4;
+            transition: all 0.4s ease;
+        }
+
+        .hero-image-container:hover::before {
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border-color: var(--brand-red);
+            opacity: 0.7;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7),
+                        0 0 40px rgba(0, 60, 255, 0.25);
+            border: 1px solid var(--glass-border);
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-image-container:hover .hero-image {
+            transform: scale(1.01);
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 350px;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        /* Glassmorphic Refined Card Style */
+        .info-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateX(-8px);
+            border-color: rgba(255, 255, 255, 0.18);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 0, 60, 0.1);
+        }
+
+        .info-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .info-card h3 span {
+            background: linear-gradient(45deg, var(--brand-red), var(--brand-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--brand-red), var(--brand-blue));
+            color: #fff;
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 16px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(255, 0, 60, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 60, 255, 0.4);
+            opacity: 0.95;
+        }
+
+        /* Glassmorphism Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: rgba(25, 25, 35, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 28px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 0, 60, 0.2);
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-box h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--brand-red), var(--brand-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-box p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-close {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.8rem 2.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .btn-close:hover {
+            background: #fff;
+            color: var(--bg-color);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Responsive Layout Changes */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.6rem; }
+            .hero-section { flex-direction: column; gap: 2.5rem; }
+            .hero-image-container, .hero-content { min-width: 100%; }
+            .info-card:hover { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>الهوية الموحدة | TXLIR</h1>
+        <p class="subtitle">الزي الرسمي المعتمد لطاقم العمل. ابتكار هندسي متكامل يجمع بين الهوية البصرية السيبرانية والراحة المطلقة لبيئات الألعاب الاحترافية.</p>
+    </header>
+
+    <main class="hero-section">
+        
+        <div class="hero-image-container">
+            <img src="Gemini_Generated_Image_epbzwvepbzwvepbz.png" alt="الزي الرسمي الموحد TXLIR" class="hero-image">
+        </div>
+
+        <div class="hero-content">
+            <div class="info-card">
+                <h3><span>✦</span> التصميم والهوية البصرية</h3>
+                <p>تم اعتماد نسيج اللون الأسود المعتم ليتوافق بانسيابية مع إضاءات الـ RGB الديناميكية داخل صالات الألعاب. يبرز الشعار الهندسي المركزي بألوان النيون المتداخلة (الأحمر والأزرق) لتقديم بصمة بصرية فورية وسهلة التمييز من قبل الرواد والعملاء.</p>
+            </div>
+
+            <div class="info-card">
+                <h3><span>✦</span> الراحة الكليّة والأداء العملي</h3>
+                <p>هندسة النسيج تعتمد على مزيج قطني مطور مع ألياف مرنة لضمان تهوية ممتازة ومرونة كاملة للحركة أثناء فترات العمل الطويلة والمناوبات، بالإضافة إلى ميزة مقاومة الانكماش للحفاظ على مظهر هندامي راقٍ ومستدام.</p>
+            </div>
+
+            <button class="btn-primary" onclick="openModal()">
+                اعتماد التصميم النهائي للإنتاج
+            </button>
+        </div>
+
+    </main>
+
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-box">
+            <h4>تأكيد الاعتماد الإلكتروني</h4>
+            <p>تم اعتماد هذا التصميم رسمياً كزي موحد لـ TXLIR. جاري تجهيز ملفات الطباعة والإنتاج عالية الدقة بصيغة الفيكتور (Vector).</p>
+            <button class="btn-close" onclick="closeModal()">موافق</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('customModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('customModal').classList.remove('active');
+        }
+
+        // إغلاق النافذة التفاعلية عند النقر خارج المربع الأبيض للمودال
+        window.onclick = function(event) {
+            let modal = document.getElementById('customModal');
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        }
+    </script>
+
+</body>
+</html>
